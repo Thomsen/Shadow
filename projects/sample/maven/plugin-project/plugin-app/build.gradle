@@ -2,11 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.tencent.shadow.plugin'
 
 android {
-    compileSdkVersion 30
+    namespace 'com.tencent.shadow.sample.plugin'
+    compileSdk 34
     defaultConfig {
         applicationId "com.tencent.shadow.sample.plugin"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,6 +28,10 @@ android {
         plugin {
             applicationId "com.tencent.shadow.sample.host"
         }
+    }
+
+    aaptOptions {
+        additionalParameters "--package-id", "0x5E", "--allow-reserved-package-id"
     }
 }
 
@@ -74,7 +79,6 @@ shadow {
                         businessName = 'sample-plugin'//businessName相同的插件，context获取的Dir是相同的。businessName留空，表示和宿主相同业务，直接使用宿主的Dir。
                         partKey = 'sample-plugin'
                         buildTask = 'assemblePluginDebug'
-                        apkName = 'plugin-app-plugin-debug.apk'
                         apkPath = 'plugin-app/build/outputs/apk/plugin/debug/plugin-app-plugin-debug.apk'
                     }
                 }
@@ -88,7 +92,6 @@ shadow {
                         businessName = 'demo'
                         partKey = 'sample-plugin'
                         buildTask = 'assemblePluginRelease'
-                        apkName = 'plugin-app-plugin-release.apk'
                         apkPath = 'plugin-app/build/outputs/apk/plugin/release/plugin-app-plugin-release.apk'
                     }
                 }

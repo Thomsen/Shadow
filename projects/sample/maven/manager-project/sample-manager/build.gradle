@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdk 34
     defaultConfig {
         applicationId "com.tencent.shadow.sample.manager"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdk 33
         versionCode 1
         versionName "1.0"
     }
